@@ -1,7 +1,7 @@
 {
   "name": "front",
   "version": "0.1.0",
-  "homepage": " https://hatimkd.github.io/location_cars/",
+  "homepage": "http://locationcar.me/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",

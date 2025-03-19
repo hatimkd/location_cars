@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/auth/authSlice"; // Import de l'action
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,12 +11,15 @@ export default function Login() {
   const { loading, error, isAuthenticated } = useSelector(
     (state) => state.login
   );
+  const navigate = useNavigate(); // Utilisation correcte
 
   useEffect(() => {
     if (localStorage.getItem("AUTH_TOKEN_KEY")) {
-      window.location.href = `${process.env.PUBLIC_URL}/users/profile`;
+      navigate("/users/profile"); // Utilisation correcte
+
+      // window.location.href = `${process.env.PUBLIC_URL}/users/profile`;
     }
-  });
+  }, [navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = { username: email, password: password };
