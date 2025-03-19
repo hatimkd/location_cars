@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/location_cars/static/css/main.0d8065d7.css",
-    "main.js": "/location_cars/static/js/main.61870a97.js",
+    "main.css": "/location_cars/static/css/main.79898d97.css",
+    "main.js": "/location_cars/static/js/main.56f6a632.js",
     "static/js/276.e3075e61.chunk.js": "/location_cars/static/js/276.e3075e61.chunk.js",
     "static/js/487.3ab67b4f.chunk.js": "/location_cars/static/js/487.3ab67b4f.chunk.js",
-    "static/js/308.28925cf3.chunk.js": "/location_cars/static/js/308.28925cf3.chunk.js",
+    "static/js/308.55b1044f.chunk.js": "/location_cars/static/js/308.55b1044f.chunk.js",
     "static/js/453.80efc53e.chunk.js": "/location_cars/static/js/453.80efc53e.chunk.js",
     "static/js/804.8806fc6c.chunk.js": "/location_cars/static/js/804.8806fc6c.chunk.js",
     "static/js/887.3dde495c.chunk.js": "/location_cars/static/js/887.3dde495c.chunk.js",
     "static/js/471.fd1921f7.chunk.js": "/location_cars/static/js/471.fd1921f7.chunk.js",
     "static/css/758.b0cb9434.chunk.css": "/location_cars/static/css/758.b0cb9434.chunk.css",
     "index.html": "/location_cars/index.html",
-    "main.0d8065d7.css.map": "/location_cars/static/css/main.0d8065d7.css.map",
-    "main.61870a97.js.map": "/location_cars/static/js/main.61870a97.js.map",
+    "main.79898d97.css.map": "/location_cars/static/css/main.79898d97.css.map",
+    "main.56f6a632.js.map": "/location_cars/static/js/main.56f6a632.js.map",
     "276.e3075e61.chunk.js.map": "/location_cars/static/js/276.e3075e61.chunk.js.map",
     "487.3ab67b4f.chunk.js.map": "/location_cars/static/js/487.3ab67b4f.chunk.js.map",
-    "308.28925cf3.chunk.js.map": "/location_cars/static/js/308.28925cf3.chunk.js.map",
+    "308.55b1044f.chunk.js.map": "/location_cars/static/js/308.55b1044f.chunk.js.map",
     "453.80efc53e.chunk.js.map": "/location_cars/static/js/453.80efc53e.chunk.js.map",
     "804.8806fc6c.chunk.js.map": "/location_cars/static/js/804.8806fc6c.chunk.js.map",
     "887.3dde495c.chunk.js.map": "/location_cars/static/js/887.3dde495c.chunk.js.map",
@@ -23,7 +23,7 @@
     "758.b0cb9434.chunk.css.map": "/location_cars/static/css/758.b0cb9434.chunk.css.map"
   },
   "entrypoints": [
-    "static/css/main.0d8065d7.css",
-    "static/js/main.61870a97.js"
+    "static/css/main.79898d97.css",
+    "static/js/main.56f6a632.js"
   ]
 }
