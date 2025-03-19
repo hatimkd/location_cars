@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/location_cars/static/css/main.79898d97.css",
-    "main.js": "/location_cars/static/js/main.56f6a632.js",
+    "main.js": "/location_cars/static/js/main.4d19308e.js",
     "static/js/276.e3075e61.chunk.js": "/location_cars/static/js/276.e3075e61.chunk.js",
     "static/js/487.3ab67b4f.chunk.js": "/location_cars/static/js/487.3ab67b4f.chunk.js",
     "static/js/308.55b1044f.chunk.js": "/location_cars/static/js/308.55b1044f.chunk.js",
@@ -12,7 +12,7 @@
     "static/css/758.b0cb9434.chunk.css": "/location_cars/static/css/758.b0cb9434.chunk.css",
     "index.html": "/location_cars/index.html",
     "main.79898d97.css.map": "/location_cars/static/css/main.79898d97.css.map",
-    "main.56f6a632.js.map": "/location_cars/static/js/main.56f6a632.js.map",
+    "main.4d19308e.js.map": "/location_cars/static/js/main.4d19308e.js.map",
     "276.e3075e61.chunk.js.map": "/location_cars/static/js/276.e3075e61.chunk.js.map",
     "487.3ab67b4f.chunk.js.map": "/location_cars/static/js/487.3ab67b4f.chunk.js.map",
     "308.55b1044f.chunk.js.map": "/location_cars/static/js/308.55b1044f.chunk.js.map",
@@ -24,6 +24,6 @@
   },
   "entrypoints": [
     "static/css/main.79898d97.css",
-    "static/js/main.56f6a632.js"
+    "static/js/main.4d19308e.js"
   ]
 }
