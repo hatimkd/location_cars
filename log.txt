@@ -1,0 +1,5 @@
+"homepage": "https://hatimkd.github.io/location_cars/",
+
+"predeploy": "npm run build",
+
+"deploy": "gh-pages -d build"
