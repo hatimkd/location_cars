@@ -212,7 +212,7 @@ export default function Swip() {
       >
         {/* Slides avec images du dossier public */}
         {[
-          "porsch.webp",
+          // "porsch.webp",
           "Gle.webp",
           "C220.webp",
           "Touarg.webp",
