@@ -112,7 +112,7 @@ const Home = () => {
     <div className="w-full flex flex-col lg:px-12 px-3 p-1 rounded-b-3xl bg-slate-100 shadow-blue-300">
       <Section />
 
-      <Suspense fallback={<div>Chargement...</div>}>
+      <Suspense fallback={<div className="w-full flex justify-center"><Loading /></div>}>
         <div
           ref={brandCarRef}
           className={`transition-opacity duration-700 ${

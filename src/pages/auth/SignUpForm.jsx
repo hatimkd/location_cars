@@ -221,7 +221,9 @@ export default function SignUpForm() {
   useEffect(() => {
 
       if (localStorage.getItem("AUTH_TOKEN_KEY")) {
-        window.location.href = "/users/profile";
+        // window.location.href = "/users/profile";
+        const publicUrl = process.env.PUBLIC_URL || "";
+window.location.href = `${publicUrl}/users/profile`;
       }
     if (successMessage || errorMessage) {
       const timer = setTimeout(() => {
