@@ -67,7 +67,7 @@ import RentalsNV from "./pages/Users/RentalsNV";
 import Error from "../src/pages/Error";
 import Layout from "./components/Layouts";
 import DashboardLayout from "./components/Home/DashbordLayout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchUserDetails } from "./features/Users/UserSlice";
 // import Dashboard from "./pages/admin/Dashboard";
@@ -75,8 +75,20 @@ import { fetchUserDetails } from "./features/Users/UserSlice";
 const AppRoutes = () => {
   const { userInfo } = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchUserDetails();
+    if (!userInfo) {
+      dispatch(fetchUserDetails());
+    }
+    // if (!localStorage.getItem("AUTH_TOKEN_KEY")) {
+    //   window.location.href = "/";
+    // }
+    // dispatch(fetchRentals({ page: pagination.currentPage }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    // fetchUserDetails();
   }, [userInfo]);
   return (
     <Router basename={process.env.PUBLIC_URL}>
