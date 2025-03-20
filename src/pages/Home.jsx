@@ -109,7 +109,7 @@ const Home = () => {
     // return <FaTruckLoading />; // Affiche la page de chargement pendant 1 seconde
   // }
   return (
-    <div className="w-full flex flex-col lg:px-12 px-3 p-1 rounded-b-3xl bg-slate-100 shadow-blue-300">
+    <div className="w-full flex flex-col lg:px-12 px-3 p-1 rounded-b-3xl bg-slate-50 shadow-blue-300">
       <Section />
 
       <Suspense fallback={<div className="w-full flex justify-center"><Loading /></div>}>

@@ -4,6 +4,9 @@ import { addCars } from "../../features/Cars/CarsSlice";
 import { Verified, VerifiedIcon } from "lucide-react";
 import api from "../../features/api";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const fuelTypes = [
   { value: "Petrol", label: "Essence" },
   { value: "Diesel", label: "Diesel" },
@@ -12,6 +15,7 @@ const fuelTypes = [
 
 const AddCars = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   // const [data, setData] = useState();
   const [carDetails, setCarDetails] = useState({
     brand: "",
@@ -96,12 +100,54 @@ const AddCars = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(addCars(carDetails));
+  //     setMessage("Voiture ajoutée avec succès !");
+  //     setMessageType("success");
+  //     setCarDetails({
+  //       brand: "",
+  //       model: "",
+  //       matricule: "",
+  //       location: "",
+  //       color: "",
+  //       seats: "",
+  //       fuel_type: "",
+  //       price_per_day: "",
+  //       availability: true,
+  //       image: null,
+  //     });
+  //   } catch (error) {
+  //     console.error("Erreur détaillée :", error);
+  //     if (error.matricule) {
+  //       setMessage(`Erreur: ${error.matricule}`);
+  //     } else {
+  //       setMessage("Erreur lors de l'ajout de la voiture.");
+  //     }
+  //     setMessageType("error");
+  //   } finally {
+  //     // Afficher le message pendant 3 secondes
+  //     setTimeout(() => {
+  //       setMessage("");
+  //     }, 3000);
+  //   }
+  // };
+
+  // toast.configure();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(addCars(carDetails));
-      setMessage("Voiture ajoutée avec succès !");
-      setMessageType("success");
+      await dispatch(addCars(carDetails));
+      setLoading(true);
+
+      toast.success(" Voiture ajoutée avec succès !", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+
+      // Réinitialisation du formulaire
       setCarDetails({
         brand: "",
         model: "",
@@ -114,22 +160,26 @@ const AddCars = () => {
         availability: true,
         image: null,
       });
+      setLoading(false);
     } catch (error) {
+      setLoading(true);
+
       console.error("Erreur détaillée :", error);
+
       if (error.matricule) {
-        setMessage(`Erreur: ${error.matricule}`);
+        toast.error(` Erreur: ${error.matricule}`, {
+          position: "top-right",
+          autoClose: 3000,
+        });
       } else {
-        setMessage("Erreur lors de l'ajout de la voiture.");
+        toast.error(" Erreur lors de l'ajout de la voiture.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
-      setMessageType("error");
-    } finally {
-      // Afficher le message pendant 3 secondes
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
+      setLoading(false);
     }
   };
-
   const [selectedBrand, setSelectedBrand] = useState("");
 
   const [message, setMessage] = useState("");
@@ -155,7 +205,6 @@ const AddCars = () => {
     setCarDetails({ ...carDetails, brand: selectedBrand, model: "" });
   };
 
- 
   return (
     <div className="flex justify-center items-center bg-gray-100 min px-8 py-1.5">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl">
@@ -252,7 +301,7 @@ const AddCars = () => {
                 label: "Prix par jour",
                 type: "number",
                 min: 1,
-                max: 1000,
+                max: 10000,
                 required: true,
               },
             ].map(({ id, label, type, required, min, max }) => (
@@ -335,6 +384,7 @@ const AddCars = () => {
                 type="file"
                 id="image"
                 name="image"
+                accept="image/*"
                 onChange={handleChange}
                 className="mt-1 block w-full text-gray-700 border-gray-300 rounded-lg  px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
@@ -361,14 +411,17 @@ const AddCars = () => {
               </label>
             </div>
           </div>
+
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150"
+            className={`w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md 
+  ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-700"} 
+  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150`}
+            disabled={loading}
           >
-            Ajouter Voiture
+            {loading ? "Chargement..." : "Ajouter Voiture"}
           </button>
         </form>
-       
       </div>
     </div>
   );

@@ -168,22 +168,22 @@ const Section = () => {
   };
 
   return (
-    <div className="w-full flex flex-col lg:flex-row">
+    <div className="w-full flex mt-5 flex-col lg:flex-row">
       <div className="w-full flex flex-col justify-center items-center p-1">
-        <h3 className="lg:text-8xl font-bold text-7xl w-full justify-center items-center lg:p-0 flex flex-col gap-1">
+        <h3 className="lg:text-8xl font-semibold text-6xl w-full justify-center items-center lg:p-0 flex  flex-col gap-1.5">
           <span>Louez les</span>
           <h2>
             Meilleurs <br />
-            <h2 className="text-blue-700  text-centre bg-yellow-100 w-full flex justify-center  items-center rounded-2xl ">
+            <h2 className="text-blue-700  text-centre bg-yellow-100 w-full flex justify-center  items-center rounded-2xl mt-1">
               SUVs
             </h2>
           </h2>
         </h3>
-        <div className="lg:w-2/3 rounded-2xl flex flex-col w-full bg-slate-300 lg:m-7 mt-7 justify-center items-center lg:p-8 p-7">
+        <div className="lg:w-2/3 rounded-2xl flex flex-col w-full bg-slate-200 lg:m-7 mt-7 justify-center items-center lg:p-8 p-7">
           <h3
-            className="text-xl font-semibold leading-relaxed text-justify"
+            className="text-xl font-sans leading-relaxed text-justify"
             style={{ width: "100%", minHeight: "100px" }} // Par exemple, 100% de largeur et 100px de hauteur minimale
-          >
+          > 
             {/* Découvrez notre service de location de véhicules fiable et intuitif,
             offrant une expérience de réservation fluide. Gérez facilement vos
             locations et profitez d’une administration professionnelle en toute

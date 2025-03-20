@@ -197,6 +197,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { addRentals } from "../../features/Cars/CarsSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 export const ReservationForm = ({ car, onClose }) => {
   const [formData, setFormData] = useState({
@@ -243,9 +244,9 @@ export const ReservationForm = ({ car, onClose }) => {
         setMessage("Vous n'êtes pas connecté");
 
         setMessageType("error");
-       
-          window.location.href = "/login";
-          return;
+
+        window.location.href = "/login";
+        return;
         // }, 500);
       }
 
@@ -270,7 +271,15 @@ export const ReservationForm = ({ car, onClose }) => {
         // setMessage("Réservation réussie !");
         // setMessageType("success");
         console.log(message, messageType);
-
+        toast.success("Réservation réussie !", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setTimeout(() => {
           setMessage(""); // Clear the message after 1 second
           onClose(); // Close the form after showing the message
@@ -354,6 +363,7 @@ export const ReservationForm = ({ car, onClose }) => {
               name="startDate"
               value={formData.startDate}
               onChange={handleInputChange}
+              min={new Date().toISOString().split("T")[0]} // Définit la date minimale à aujourd'hui
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -367,6 +377,8 @@ export const ReservationForm = ({ car, onClose }) => {
               id="endDate"
               name="endDate"
               value={formData.endDate}
+              min={new Date().toISOString().split("T")[0]} // Définit la date minimale à aujourd'hui
+              // max={new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // Demain
               onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required

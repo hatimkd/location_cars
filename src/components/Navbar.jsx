@@ -599,12 +599,16 @@ export default function Navbar() {
             Contact
           </NavLink>
           {localStorage.getItem("AUTH_TOKEN_KEY") ? (
-            <button
-              onClick={handleLogout}
-              className="block w-full text-left py-2 text-gray-700 hover:text-gray-900"
+            <NavLink
+              to="/users/profile"
+              className={({ isActive }) =>
+                isActive
+                  ? "block py-2 text-blue-600 font-semibold"
+                  : "block py-2 text-gray-700 hover:text-gray-900"
+              }
             >
-              Déconnexion
-            </button>
+              Dashboard
+            </NavLink>
           ) : (
             <NavLink
               to="/login"
