@@ -619,8 +619,8 @@
 //                     {rental.pdf_contract ? (
 //                       <a href={rental.pdf_contract.file} download>
 //                         <button
-//                           className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg 
-//                         hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 
+//                           className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg
+//                         hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400
 //                         focus:ring-opacity-75 transition duration-150 ease-in-out flex  gap-3"
 //                         >
 //                           <FileDown />
@@ -638,8 +638,8 @@
 //                           openModal();
 //                           handleSelectRental(rental);
 //                         }}
-//                         className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg 
-//                         hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 
+//                         className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg
+//                         hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400
 //                         focus:ring-opacity-75 transition duration-150 ease-in-out flex  gap-3"
 //                       >
 //                         <Upload />
@@ -650,8 +650,8 @@
 //                       ) : (
 //                         <button
 //                           onClick={() => handleValidation(rental.id)}
-//                           className="ml-2 bg-green-500 text-white font-semibold py-2 px-4 rounded-lg 
-//                         hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 
+//                           className="ml-2 bg-green-500 text-white font-semibold py-2 px-4 rounded-lg
+//                         hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400
 //                         focus:ring-opacity-75 transition duration-150 ease-in-out"
 //                         >
 //                           <Check />
@@ -681,17 +681,17 @@
 //                         <input
 //                           type="file"
 //                           onChange={handleFileChange}
-//                           className="mb-4 block w-full text-sm text-gray-900 
-//                             file:mr-4 file:py-2 file:px-4 file:rounded-lg 
-//                             file:border-0 file:text-sm file:font-semibold 
+//                           className="mb-4 block w-full text-sm text-gray-900
+//                             file:mr-4 file:py-2 file:px-4 file:rounded-lg
+//                             file:border-0 file:text-sm file:font-semibold
 //                             file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
 //                           name="files"
 //                         />
 //                         <div className="flex justify-end">
 //                           <button
 //                             onClick={() => handleUpload(selectedRental?.id)}
-//                             className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg 
-//                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 
+//                             className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg
+//                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400
 //                             focus:ring-opacity-75 transition duration-150 ease-in-out"
 //                           >
 //                             <Upload />
@@ -699,8 +699,8 @@
 //                           </button>
 //                           <button
 //                             onClick={closeModal}
-//                             className="ml-2 bg-gray-300 text-black font-semibold py-2 px-4 rounded-lg 
-//                             hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 
+//                             className="ml-2 bg-gray-300 text-black font-semibold py-2 px-4 rounded-lg
+//                             hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400
 //                             focus:ring-opacity-75 transition duration-150 ease-in-out"
 //                           >
 //                             Annuler
@@ -748,8 +748,6 @@
 //   );
 // };
 
-
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -760,13 +758,18 @@ import {
 import DashboardLayout from "../../components/Home/DashbordLayout";
 import Modal from "react-modal";
 import { Check, FileDown, Upload } from "lucide-react";
+
+import { fetchUserDetails } from "../../features/Users/UserSlice";
+
 import { motion } from "framer-motion";
 import Select from "react-select";
 
 const Rentals = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);
-  const { rentals, loading, pagination } = useSelector((state) => state.carRental);
+  const { rentals, loading, pagination } = useSelector(
+    (state) => state.carRental
+  );
 
   const [selectedRental, setSelectedRental] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -775,7 +778,12 @@ const Rentals = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filterValid, setFilterValid] = useState("");
 
+  // const dispatch = useDispatch();
+
   useEffect(() => {
+    if (!userInfo) {
+      dispatch(fetchUserDetails());
+    }
     if (!localStorage.getItem("AUTH_TOKEN_KEY")) {
       window.location.href = "/";
     }
@@ -825,7 +833,7 @@ const Rentals = () => {
     { value: "true", label: "Valide" },
     { value: "false", label: "Invalide" },
   ];
- 
+
   if (loading) {
     return (
       <div className="p-4 bg-white shadow-lg rounded-xl">
@@ -872,9 +880,9 @@ const Rentals = () => {
   }
 
   return (
-    // <DashboardLayout>
     <>
-      <motion.div 
+      {" "}
+      <motion.div
         className="p-4 bg-white shadow-lg rounded-xl"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -882,76 +890,100 @@ const Rentals = () => {
       >
         <h1 className="text-2xl font-bold mb-4">Rentals</h1>
 
-        {/* <div className="mb-4 flex gap-4 items-center">
-          <label className="text-sm font-medium text-gray-700">Filtrer par validité :</label>
+        <div className="mb-4 flex gap-4 items-center">
+          <label className="text-sm font-medium text-gray-700">
+            Filtrer par validité :
+          </label>
           <Select
             options={filterOptions}
             value={filterOptions.find((option) => option.value === filterValid)}
             onChange={(option) => setFilterValid(option.value)}
             className="w-48"
           />
-        </div> */}
+        </div>
 
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
               <tr className="bg-gray-100 text-left">
-                {/* <th className="py-3 px-4">Utilisateur</th> */}
+                {userInfo?.is_staff && (
+                  <th className="py-3 px-4">Utilisateur</th>
+                )}
+
                 <th className="py-3 px-4">Voiture</th>
                 <th className="py-3 px-4">Début</th>
                 <th className="py-3 px-4">Fin</th>
                 <th className="py-3 px-4">Prix total</th>
                 <th className="py-3 px-4">Validité</th>
                 <th className="py-3 px-4">Ville</th>
-                {/* <th className="py-3 px-4">Créé le</th> */}
+                <th className="py-3 px-4">Créé le</th>
                 <th className="py-3 px-4">Contrat</th>
-                {userInfo?.is_staff && <th className="py-3 px-4 text-center">Actions</th>}
+                {userInfo?.is_staff && (
+                  <th className="py-3 px-4 text-center">Actions</th>
+                )}
               </tr>
             </thead>
             <tbody>
               {rentals.results?.map((rental) => (
-                <motion.tr 
-                  key={rental.id} 
+                <motion.tr
+                  key={rental.id}
                   className="border-b hover:bg-gray-50"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {/* <td className="py-3 px-4">{rental.user}</td> */}
+                  {userInfo?.is_staff && (
+                    <td className="py-3 px-4">{rental.user}</td>
+                  )}
                   <td className="py-3 px-4">{rental.car_name}</td>
                   <td className="py-3 px-4">{rental.start_date}</td>
                   <td className="py-3 px-4">{rental.end_date}</td>
                   <td className="py-3 px-4">{rental.total_price} MAD</td>
-                  <td className={`py-3 px-4 ${rental.is_valid_admin ? "text-green-700" : ""}`}>
+                  <td
+                    className={`py-3 px-4 ${
+                      rental.is_valid_admin ? "text-green-700" : ""
+                    }`}
+                  >
                     {rental.is_valid_admin ? "Oui" : "Non"}
                   </td>
                   <td className="py-3 px-4">{rental.location_city}</td>
-                  {/* <td className="py-3 px-4">{new Date(rental.created_at).toLocaleDateString()}</td> */}
+                  <td className="py-3 px-4">
+                    {new Date(rental.created_at).toLocaleDateString()}
+                  </td>
                   <td className="py-3 px-4">
                     {rental.pdf_contract ? (
-                      <a href={rental.pdf_contract.file} download className="flex items-center gap-2 text-blue-600">
+                      <a
+                        href={rental.pdf_contract.file}
+                        download
+                        className="flex items-center gap-2 text-blue-600"
+                      >
                         <FileDown /> Télécharger
                       </a>
-                    ) : "Aucun contrat"}
+                    ) : (
+                      "Aucun contrat"
+                    )}
                   </td>
-                  {/* {userInfo?.is_staff && (
+                  {userInfo?.is_staff && (
                     <td className="py-3 px-4 flex justify-center gap-2">
-                      <button 
-                        onClick={() => { openModal(); handleSelectRental(rental); }} 
+                      <button
+                        onClick={() => {
+                          openModal();
+                          handleSelectRental(rental);
+                        }}
                         className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
                       >
                         <Upload /> Upload
                       </button>
                       {!rental.is_valid_admin && (
-                        <button 
-                          onClick={() => handleValidation(rental.id)} 
+                        <button
+                          onClick={() => handleValidation(rental.id)}
                           className="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 flex items-center gap-2"
                         >
                           <Check /> Valider
                         </button>
                       )}
                     </td>
-                  )} */}
+                  )}
                 </motion.tr>
               ))}
             </tbody>
@@ -961,9 +993,13 @@ const Rentals = () => {
         {/* Boutons de pagination */}
         <div className="mt-4 flex justify-between items-center">
           <button
-            onClick={() => dispatch(fetchRentals({ page: pagination.currentPage - 1 }))}
+            onClick={() =>
+              dispatch(fetchRentals({ page: pagination.currentPage - 1 }))
+            }
             disabled={!pagination.previous}
-            className={`py-2 px-4 bg-blue-500 text-white rounded ${!pagination.previous && "opacity-50 cursor-not-allowed"}`}
+            className={`py-2 px-4 bg-blue-500 text-white rounded ${
+              !pagination.previous && "opacity-50 cursor-not-allowed"
+            }`}
           >
             Previous
           </button>
@@ -971,16 +1007,19 @@ const Rentals = () => {
             Page {pagination.currentPage} of {pagination.totalPages}
           </span>
           <button
-            onClick={() => dispatch(fetchRentals({ page: pagination.currentPage + 1 }))}
+            onClick={() =>
+              dispatch(fetchRentals({ page: pagination.currentPage + 1 }))
+            }
             disabled={!pagination.next}
-            className={`py-2 px-4 bg-blue-500 text-white rounded ${!pagination.next && "opacity-50 cursor-not-allowed"}`}
+            className={`py-2 px-4 bg-blue-500 text-white rounded ${
+              !pagination.next && "opacity-50 cursor-not-allowed"
+            }`}
           >
             Next
           </button>
         </div>
       </motion.div>
-
-      
+      {/* Modal Upload */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -996,13 +1035,15 @@ const Rentals = () => {
           className="w-full text-sm text-gray-900 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-blue-600 hover:file:bg-blue-100"
         />
         <div className="flex justify-end mt-4">
-          <button onClick={() => handleUpload(selectedRental)} className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => handleUpload(selectedRental)}
+            className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700"
+          >
             Confirmer
           </button>
         </div>
       </Modal>
-      </>
-    // </DashboardLayout>
+    </>
   );
 };
 

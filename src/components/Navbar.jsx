@@ -398,18 +398,26 @@ import { useSelector, useDispatch } from "react-redux";
 // import { logout } from "@/features/auth/authSlice";
 import { Menu } from "@headlessui/react";
 import { MenuIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchUserDetails } from "../features/Users/UserSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.user);
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (!userInfo) {
+      dispatch(fetchUserDetails());
+    }
+  }, [userInfo]);
   const handleLogout = () => {
     // dispatch(logout());
 
     localStorage.removeItem("AUTH_TOKEN_KEY");
     navigate("/login");
+    
   };
 
   return (

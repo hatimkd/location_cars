@@ -20,13 +20,13 @@
 //           <BsFillMenuButtonFill size={24} />
 //         </button>
 //       </div>
-      
+
 //       <nav className="flex-1 py-4">
 //         <ul className="space-y-2">
 //           <li>
 //             <NavLink
 //               to="/users/profile"
-//               className={({ isActive }) => 
+//               className={({ isActive }) =>
 //                 `flex items-center px-4 py-2 ${isActive ? "bg-gray-700" : "hover:bg-gray-700"} transition-colors`
 //               }
 //               onClick={toggleSidebar}
@@ -38,7 +38,7 @@
 //           <li>
 //             <NavLink
 //               to="/users/rentals"
-//               className={({ isActive }) => 
+//               className={({ isActive }) =>
 //                 `flex items-center px-4 py-2 ${isActive ? "bg-gray-700" : "hover:bg-gray-700"} transition-colors`
 //               }
 //               onClick={toggleSidebar}
@@ -50,7 +50,7 @@
 //           <li>
 //             <NavLink
 //               to="/settings"
-//               className={({ isActive }) => 
+//               className={({ isActive }) =>
 //                 `flex items-center px-4 py-2 ${isActive ? "bg-gray-700" : "hover:bg-gray-700"} transition-colors`
 //               }
 //               onClick={toggleSidebar}
@@ -63,7 +63,7 @@
 //             <li>
 //               <NavLink
 //                 to="/admin"
-//                 className={({ isActive }) => 
+//                 className={({ isActive }) =>
 //                   `flex items-center px-4 py-2 ${isActive ? "bg-gray-700" : "hover:bg-gray-700"} transition-colors`
 //                 }
 //                 onClick={toggleSidebar}
@@ -94,19 +94,23 @@
 
 // export default Sidebar;
 
-
-
-
-
-import React from "react";
+import React, { useEffect } from "react";
 import { MdDashboard, MdMenu } from "react-icons/md";
 import { FaUser, FaCalendarAlt, FaUserShield } from "react-icons/fa";
 import { FiSettings, FiLogOut } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector  ,useDispatch} from "react-redux";
+import { fetchUserDetails } from "../../features/Users/UserSlice";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { userInfo } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!userInfo) {
+      dispatch(fetchUserDetails());
+    }
+  }, [userInfo]);
 
   return (
     <div
@@ -152,7 +156,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               onClick={toggleSidebar}
             >
               <FaCalendarAlt className="mr-3" size={20} />
-              Mes réservations
+              {userInfo?.role == "admin" ? "Les" : "Mes"} réservations
             </NavLink>
           </li>
           <li>

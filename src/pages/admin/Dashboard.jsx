@@ -106,6 +106,7 @@ import SideBar, { SideBarItems } from "../../components/Admin/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails } from "../../features/Users/UserSlice";
 import { useNavigate, Outlet, NavLink } from "react-router-dom";
+import Loading from "../../components/Home/Loading";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -116,7 +117,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(fetchUserDetails());
-  }, [dispatch]);
+  }, [dispatch ]);
 
   useEffect(() => {
     if (localStorage.getItem("AUTH_TOKEN_KEY") != null) {
@@ -136,11 +137,18 @@ const Dashboard = () => {
   ];
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading text="Admin Page"/>;
   }
 
   if (errorMessage) {
-    return <div>Error: {errorMessage}</div>;
+    // return <div>Error: {errorMessage}</div>;
+
+
+
+
+    
+    
+    return <Loading />;
   }
 
   return (

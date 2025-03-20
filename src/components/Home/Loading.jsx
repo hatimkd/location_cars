@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function Loading({ onLoaded }) {
+export default function Loading({ onLoaded  , text="Bienvenue à la Location"} ) {
   const [isVisible, setIsVisible] = useState(true);
-  const text = "Bienvenue à la Location".split("");
+  const letters = text.split("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,7 +23,7 @@ export default function Loading({ onLoaded }) {
           transition={{ delay: 2.5, duration: 0.5 }} // Disparition douce après 2.5s
         >
           <motion.h1 className="text-3xl font-bold text-blue-600 mb-8 flex">
-            {text.map((letter, index) => (
+            {letters.map((letter, index) => (
               <motion.span
                 key={index}
                 initial={{ opacity: 0, y: -20 }} // Chaque lettre commence en haut avec opacité 0

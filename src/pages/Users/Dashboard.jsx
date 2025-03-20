@@ -73,7 +73,7 @@ const DashboardUsr = () => {
                 {item.icon}
                 <span className="ml-2">{item.label}</span>
               </dt>
-              <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 mx-3 sm:mt-0  ">{item.value}</dd>
+              <dd className=" text-sm text-gray-700 sm:col-span-2 mx-3 sm:mt-0  ">{item.value}</dd>
             </motion.div>
           ))}
 

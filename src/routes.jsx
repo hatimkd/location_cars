@@ -67,9 +67,17 @@ import RentalsNV from "./pages/Users/RentalsNV";
 import Error from "../src/pages/Error";
 import Layout from "./components/Layouts";
 import DashboardLayout from "./components/Home/DashbordLayout";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchUserDetails } from "./features/Users/UserSlice";
 // import Dashboard from "./pages/admin/Dashboard";
 
 const AppRoutes = () => {
+  const { userInfo } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    fetchUserDetails();
+  }, [userInfo]);
   return (
     <Router basename={process.env.PUBLIC_URL}>
       {/* <Navbar /> */}
@@ -88,20 +96,22 @@ const AppRoutes = () => {
           <Route path="/sign-up" element={<SignUpForm />} />
           {/* <Route path="/users/profile" element={<DashboardUsr />} /> */}
 
-         <Route path="/users" element={<DashboardLayout />}>
-          <Route path="profile" element={<DashboardUsr />} />
-          <Route path="rentals" element={<Rentals />} />
-          <Route path="rentals_non_valid" element={<RentalsNV />} />
-        </Route>
+          <Route path="/users" element={<DashboardLayout />}>
+            <Route path="profile" element={<DashboardUsr />} />
+            <Route path="rentals" element={<Rentals />} />
+            <Route path="rentals_non_valid" element={<RentalsNV />} />
+          </Route>
 
           {/* Routes Admin avec Outlet */}
-          <Route path="/admin" element={<Dashboard />}>
-            <Route index element={<Statistic />} />
-            <Route path="statistics" element={<Statistic />} />
-            <Route path="add-cars" element={<AddCars />} />
-            <Route path="my-cars" element={<ShowCars />} />
-            <Route path="users" element={<ShowUsers />} />
-          </Route>
+          {userInfo && userInfo.role === "admin" && (
+            <Route path="/admin" element={<Dashboard />}>
+              <Route index element={<Statistic />} />
+              <Route path="statistics" element={<Statistic />} />
+              <Route path="add-cars" element={<AddCars />} />
+              <Route path="my-cars" element={<ShowCars />} />
+              <Route path="users" element={<ShowUsers />} />
+            </Route>
+          )}
 
           <Route path="*" element={<Error />} />
         </Route>
