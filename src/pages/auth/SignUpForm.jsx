@@ -185,6 +185,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp, resetMessages } from "../../features/auth/signUpSlice";
+import { toast } from "react-toastify";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -216,6 +217,9 @@ export default function SignUpForm() {
     // Dispatch the signUp action if passwords match
     setError(""); // Clear any previous errors
     dispatch(signUp(formData));
+
+    
+    toast.success("Compte creer par success")
   };
 
   useEffect(() => {

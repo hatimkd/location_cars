@@ -66,6 +66,7 @@ import Rentals from "./pages/Users/Rentals";
 import RentalsNV from "./pages/Users/RentalsNV";
 import Error from "../src/pages/Error";
 import Layout from "./components/Layouts";
+import DashboardLayout from "./components/Home/DashbordLayout";
 // import Dashboard from "./pages/admin/Dashboard";
 
 const AppRoutes = () => {
@@ -85,9 +86,13 @@ const AppRoutes = () => {
 
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUpForm />} />
-          <Route path="/users/profile" element={<DashboardUsr />} />
-          <Route path="/users/rentals" element={<Rentals />} />
-          <Route path="/users/rentals_non_valid" element={<RentalsNV />} />
+          {/* <Route path="/users/profile" element={<DashboardUsr />} /> */}
+
+         <Route path="/users" element={<DashboardLayout />}>
+          <Route path="profile" element={<DashboardUsr />} />
+          <Route path="rentals" element={<Rentals />} />
+          <Route path="rentals_non_valid" element={<RentalsNV />} />
+        </Route>
 
           {/* Routes Admin avec Outlet */}
           <Route path="/admin" element={<Dashboard />}>

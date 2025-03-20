@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/auth/authSlice"; // Import de l'action
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -19,30 +20,42 @@ export default function Login() {
 
       // window.location.href = `${process.env.PUBLIC_URL}/users/profile`;
     }
-  }, [navigate]);
+
+    if (error) {
+      toast.error(error);
+    }
+    if (isAuthenticated) {
+      toast.success("Connexion réussie !");
+    }
+  }, [isAuthenticated, error, navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = { username: email, password: password };
     dispatch(loginUser(formData));
+
+    // toast.success(" Connexion réussie !");
+    // if(error) {
+    //   toast.error(error)
+    // }
   };
 
   return (
     <>
-      {error && (
+      {/* {error && (
         <div className="bg-red-600 text-white p-2 rounded">{error}</div>
       )}
       {isAuthenticated && (
         <div className="bg-green-600 text-white p-2 rounded">
           Connexion réussie !
         </div>
-      )}
+      )} */}
 
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
+            src="login.png"
+            className="mx-auto h-24 w-auto"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Connectez-vous à votre compte

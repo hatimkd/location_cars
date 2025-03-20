@@ -40,7 +40,7 @@ const DashboardUsr = () => {
   }
 
   return (
-    <DashboardLayout>
+    <>
       <motion.div 
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
@@ -57,7 +57,7 @@ const DashboardUsr = () => {
       <div className="mt-6 border-t border-gray-200 sm:px-20">
         <dl className="divide-y divide-gray-200">
           {[
-            { label: "Nom d'utilisateur", value: userInfo.username, icon: <User className="text-indigo-500 w-5 h-5" /> },
+            { label: "Nom d'utilisateur", value: userInfo.username, icon: <User className="text-indigo-500 w-5 h-5 " /> },
             { label: "Email", value: userInfo.email, icon: <Mail className="text-indigo-500 w-5 h-5" /> },
             { label: "Prénom", value: userInfo.first_name, icon: <User className="text-indigo-500 w-5 h-5" /> },
             { label: "Nom de famille", value: userInfo.last_name, icon: <User className="text-indigo-500 w-5 h-5" /> },
@@ -73,7 +73,7 @@ const DashboardUsr = () => {
                 {item.icon}
                 <span className="ml-2">{item.label}</span>
               </dt>
-              <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">{item.value}</dd>
+              <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 mx-3 sm:mt-0  ">{item.value}</dd>
             </motion.div>
           ))}
 
@@ -91,8 +91,8 @@ const DashboardUsr = () => {
             <dd className="text-gray-500">En cours de construction...</dd>
           </motion.div>
         </dl>
-      </div>
-    </DashboardLayout>
+</div>
+</>
   );
 };
 
