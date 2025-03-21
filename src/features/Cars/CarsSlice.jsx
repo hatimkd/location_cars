@@ -206,6 +206,8 @@ export const uploadContract = createAsyncThunk(
         headers: {
           // "Content-Type": "multipart/form-data", // Assurez-vous de garder ce type
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("AUTH_TOKEN_KEY")}`, // Récupère le token
+
         },
       });
       return response.data; // Return the response data
