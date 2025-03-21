@@ -1036,7 +1036,7 @@ const Rentals = () => {
         />
         <div className="flex justify-end mt-4">
           <button
-            onClick={() => handleUpload(selectedRental)}
+            onClick={() => handleUpload(selectedRental?.id)}
             className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700"
           >
             Confirmer
