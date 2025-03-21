@@ -199,7 +199,7 @@ export const uploadContract = createAsyncThunk(
     const formData = new FormData();
 
     formData.append("file", file); // Assurez-vous que 'file' est bien un objet File
-    formData.append("rental", rental); // Assurez-vous que rentalId est un nombre ou une chaîne
+    formData.append("rental", JSON.stringify(rental)); // Assurez-vous que rentalId est un nombre ou une chaîne
 
     try {
       const response = await api.post("/upload-pdf/", formData, {

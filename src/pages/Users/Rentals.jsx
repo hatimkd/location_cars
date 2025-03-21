@@ -965,11 +965,19 @@ const Rentals = () => {
                   </td>
                   {userInfo?.is_staff && (
                     <td className="py-3 px-4 flex justify-center gap-2">
+                      
                       <button
                         onClick={() => {
-                          openModal();
                           handleSelectRental(rental);
+
+                          openModal();
                         }}
+
+                                            
+                        
+                        disabled={!!rental.pdf_contract} // Convertit en booléen
+
+
                         className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
                       >
                         <Upload /> Upload
