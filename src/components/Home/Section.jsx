@@ -179,9 +179,9 @@ const Section = () => {
             </h2>
           </h2>
         </h3>
-        <div className="lg:w-2/3 rounded-2xl flex flex-col w-full bg-blue-700 lg:m-7 mt-7 justify-center items-center lg:p-8 p-7">
+        <div className="lg:w-2/3 rounded-2xl flex flex-col w-full bg-slate-200 lg:m-7 mt-7 justify-center items-center lg:p-8 p-7">
           <h3
-            className="text-xl font-sans leading-relaxed text-justify  text-white"
+            className="text-xl font-sans leading-relaxed text-justify  text-slate-800"
             style={{ width: "100%", minHeight: "100px" }} // Par exemple, 100% de largeur et 100px de hauteur minimale
           > 
             {/* Découvrez notre service de location de véhicules fiable et intuitif,
@@ -216,7 +216,7 @@ const Section = () => {
             <Link
               // type="submit"
               to ="/login"
-              className="mt-4 w-full py-2 rounded-lg bg-blue-700 flex text-white hover:bg-blue-800 gap-2 focus:outline-none justify-center focus:ring-2 focus:ring-blue-500"
+              className="mt-4 w-full py-2 rounded-lg bg-slate-700 flex text-white hover:bg-blue-800 gap-2 focus:outline-none justify-center focus:ring-2 focus:ring-blue-500"
             >
               <LogIn /> S'inscrire
             </Link>
